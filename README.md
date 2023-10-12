@@ -1,5 +1,7 @@
 # TacklingDisinformation
 A simple Java project on tackling dis-information, initially developed for curricular assessment. In for public access now, since it proves to be an apt foundation for any program that builds onto that, with similar objective. Better viewed as a prototype, it's a simple java project that utilizes built-in libraries -swings,awt etc.
+ Featured below is an extract from the presentation introducing the project. It provides an apt overview of the project, thus being a concise way to comprehend everything that the project set out to do, before utilizing it in your own project.
+ 
 Introduction
 
 Goal of the project -The reach and rate of disinformation in post world war-2 globalization era is getting higher day by day. -Thus, the purpose of this project is to bring awareness in the various fields this is prevalent, so consumers and producers can follow up with caution. -I intend to recommend various practices to dodge dis-information and put the medium of dis-info to better use.
