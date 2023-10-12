@@ -56,3 +56,9 @@ User Interface
 Future Enhancements 
 -My project is limited in scope, since we can't penetrate all aspects an individual indulges in, and to dodge effects of dis-info, one must re-evaluate their interaction in social aspects. 
 -Widening of project's scope would see efforts towards informing and analyzing on the many elements that for the social sphere
+
+Sources-
+Few of the many sources-
+nytimes articles on this subject, ex-Atleat 70 Countries Have had dis-information campaigns.
+Game Theory-Food theory on milk
+Links to be added shortly.
