@@ -1,0 +1,223 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+public class Project extends JFrame {
+
+    private JTextArea textArea;
+    private JButton beginButton;
+    private JButton knowMoreButton;
+    public Project() {
+        setTitle("Group 6 Project ");
+        setLayout(null);
+		setSize(600, 600);
+		getContentPane().setBackground(java.awt.Color.LIGHT_GRAY);
+        textArea = new JTextArea("To navigate this program effortlessly, and to understand the context behind the need of this program, please press the Context & Begin button.");
+        textArea.setFont(new java.awt.Font("Arial", java.awt.Font.PLAIN, 20));
+        textArea.setForeground(java.awt.Color.BLUE);	
+        textArea.setLineWrap(true);
+        textArea.setWrapStyleWord(true);
+        textArea.setEditable(false);
+        JScrollPane scrollPane = new JScrollPane(textArea);
+        scrollPane.setSize(380, 100);
+        scrollPane.setLocation(100, 100);
+        add(scrollPane);
+        beginButton = new JButton("Context & Begin");
+        beginButton.setFont(new java.awt.Font("Arial", java.awt.Font.BOLD, 20));
+        beginButton.setSize(200, 50);
+        beginButton.setLocation(170, 250);
+        beginButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+               openNewInterface();
+			   dispose();
+
+            }
+        });   
+        add(beginButton); 
+		setVisible(true);
+
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    } 
+
+    public void openNewInterface() {
+        JFrame newWindow = new JFrame("What's the Context");
+        newWindow.setSize(600, 600);
+        newWindow.setLayout(new BorderLayout());
+        JLabel text = new JLabel("<html>Post World War 2, Globalisation shifted to full gear, and with that entered the bane of mass-disinformation campaigns. Be it government or other social groups, they've employed organized effort to attain intended effect. Sadly, the world hasn't witnessed any organized counter-offensive on the same level. Our program is a minor contribution towards attaining that effect. As you'll see two important aspects of life- diet and social edutainment have been targeted, and we intend to tackle those here.</html>");
+         text.setFont(new java.awt.Font("Arial", java.awt.Font.PLAIN, 16));
+        text.setForeground(java.awt.Color.BLACK);	
+		JButton begin = new JButton("Begin");
+		
+        begin.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                yourChoice();
+				newWindow.dispose();
+            }
+        });
+        newWindow.add(text, BorderLayout.NORTH);
+        newWindow.add(begin, BorderLayout.CENTER);
+        newWindow.setVisible(true);
+        newWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+    public void yourChoice() {
+        setTitle("Your Choice");
+		setLayout(null);
+        setSize(600, 600);
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        JPanel panel = new JPanel();
+        panel.setLayout(new BorderLayout());
+        textArea = new JTextArea("Did you know that the campaigns that claim huge benefits from milk were a push for mass commercialization of that industry.Further developments will reveal important details to analyze intake effects.Similarly, the large magnitude and unchecked nature of social media bring long-running detriments day by day.Push the button below to enter search trend details.");
+        textArea.setFont(new java.awt.Font("Arial", java.awt.Font.PLAIN, 16));
+        textArea.setForeground(java.awt.Color.blue);	
+        textArea.setLineWrap(true);
+        textArea.setWrapStyleWord(true);
+        textArea.setEditable(false);
+        JScrollPane scrollPane = new JScrollPane(textArea);
+        scrollPane.setSize(380, 100);
+        scrollPane.setLocation(100, 100);
+        add(scrollPane);
+        JButton button1 = new JButton("Enter Details");
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setLayout(new FlowLayout());
+        buttonPanel.add(button1);
+        panel.add(scrollPane, BorderLayout.NORTH);
+        panel.add(buttonPanel, BorderLayout.CENTER);
+        setContentPane(panel);
+		button1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+               socialAndEdutainment();
+			   dispose(); 
+            }
+        });
+		setVisible(true);
+    }
+	    private JTextField ageField;
+    private JComboBox<String> searchAttitudeComboBox;
+    private JComboBox<String> generalMoodComboBox;
+
+    public void socialAndEdutainment() {
+        JFrame frame = new JFrame("Lets' Validate");
+        frame.setSize(500, 500);
+        frame.setLocationRelativeTo(null);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        JPanel panel = new JPanel();
+        panel.setLayout(new GridLayout(4, 2));
+        JLabel ageLabel = new JLabel("Age:");
+        ageField = new JTextField();
+        JLabel searchAttitudeLabel = new JLabel("Search Attitude:");
+        String[] searchAttitudeOptions = {"Scrolling", "Manual search"};
+        searchAttitudeComboBox = new JComboBox<>(searchAttitudeOptions);
+        JLabel generalMoodLabel = new JLabel("General Mood while consuming:");
+        String[] generalMoodOptions = {"Raging", "Sad", "Comedic", "Enticing"};
+        generalMoodComboBox = new JComboBox<>(generalMoodOptions);
+        JButton validateButton = new JButton("Validate");
+        validateButton.addActionListener(e -> {
+            int age = Integer.parseInt(ageField.getText());
+            String searchAttitude = (String) searchAttitudeComboBox.getSelectedItem();
+            String generalMood = (String) generalMoodComboBox.getSelectedItem();
+			displayOurAnalysis( age, searchAttitude, generalMood);
+			   frame.dispose();
+        });
+
+        panel.add(ageLabel);
+        panel.add(ageField);
+        panel.add(searchAttitudeLabel);
+        panel.add(searchAttitudeComboBox);
+        panel.add(generalMoodLabel);
+        panel.add(generalMoodComboBox);
+        panel.add(validateButton);
+        frame.setContentPane(panel);
+        frame.setVisible(true);
+		
+    }
+	public void displayOurAnalysis(int age, String searchAttitude, String generalMood) {
+    JFrame frame = new JFrame("OurAnalysis");
+    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    frame.setSize(900, 500);
+    JPanel panel = new JPanel();
+    panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+    JLabel label = new JLabel("Our Analysis");
+    panel.add(label);
+    if (age < 16 || age > 100) {
+        JLabel invalidAge = new JLabel("Invalid Age");
+        panel.add(invalidAge);
+    } else {
+		if (age > 20 && searchAttitude.equals("Scrolling") && (generalMood.equals("Raging") || generalMood.equals("Sad"))) {
+            JTextArea textArea = new JTextArea("Contrasting input details against behavior exhibited by social media algorithms and social groups, you're prone to both the extremes ends(good or bad) offered by social media. We recommend you to turn the selective approach to your advantage and remember that ideology spam commonly reveals their true intent.A point to be noted is viewing content that evokes remorse(sadness) isn't aggressively promoted. ");
+                    textArea.setFont(new java.awt.Font("Arial", java.awt.Font.PLAIN, 20));
+					textArea.setForeground(java.awt.Color.BLUE);
+        textArea.setLineWrap(true);
+        textArea.setWrapStyleWord(true);
+        textArea.setEditable(false);
+		JScrollPane scrollPane = new JScrollPane(textArea);
+			scrollPane.setSize(380, 100);
+        scrollPane.setLocation(100, 100);
+            panel.add(scrollPane);
+        } else if (age > 20 && searchAttitude.equals("Scrolling") && (generalMood.equals("Enticing") || generalMood.equals("Comedic"))) {
+            JTextArea textArea = new JTextArea("Contrasting input details against behavior exhibited by social media algorithms and social groups, we recognize the casual attitude and we'd prefer to direct you towards the more useful aspects of social media such as verified news sources,and hobby groups. We also recommend using manual search a lot more.");
+                    textArea.setFont(new java.awt.Font("Arial", java.awt.Font.PLAIN, 20));
+					textArea.setForeground(java.awt.Color.BLUE);
+          textArea.setLineWrap(true);
+        textArea.setWrapStyleWord(true);
+        textArea.setEditable(false);
+		JScrollPane scrollPane = new JScrollPane(textArea);
+            panel.add(scrollPane);
+        } else if (age > 20 && searchAttitude.equals("Manual search") && (generalMood.equals("Enticing") || generalMood.equals("Comedic"))) {
+            JTextArea textArea = new JTextArea("Contrasting input details against behavior exhibited by social media algorithms and social groups, we'd convey you that you're following a fairly healthy attitude in your use. We recommend checking out useful aspects of social media such as verified news sources,and hobby groups. Continue having fun!");
+        textArea.setFont(new java.awt.Font("Arial", java.awt.Font.PLAIN, 20));
+		textArea.setForeground(java.awt.Color.BLUE);
+        textArea.setLineWrap(true);
+        textArea.setWrapStyleWord(true);
+        textArea.setEditable(false);JScrollPane scrollPane = new JScrollPane(textArea);
+            panel.add(scrollPane);
+        } else if (age > 20 && searchAttitude.equals("Manual search") && (generalMood.equals("Raging") || generalMood.equals("Sad"))) {
+            JTextArea textArea = new JTextArea("Contrasting input details against behavior exhibited by social media algorithms and social groups, we've found patterns alluding to risks of propaganda or misinformation campaigns promoted by few social groups intended for malicious effect.A point to be noted is viewing content that evokes remorse(sadness) isn't aggressively promoted. We recommend thorough introspection and manual search while consuming content.");
+         textArea.setFont(new java.awt.Font("Arial", java.awt.Font.PLAIN, 20));
+		 textArea.setForeground(java.awt.Color.BLUE);
+         textArea.setLineWrap(true);
+        textArea.setWrapStyleWord(true);
+        textArea.setEditable(false);
+		JScrollPane scrollPane = new JScrollPane(textArea);
+            panel.add(scrollPane);
+        }
+         else if (age < 20 && (searchAttitude.equals("Scrolling") || searchAttitude.equals("Manual search")) && (generalMood.equals("Comedic") || generalMood.equals("Enticing"))) {
+            JTextArea textArea = new JTextArea("Contrasting input details against behavior exhibited by social media algorithms and social groups, we've found that you fall under the most common demographic predictable to algorithms, which doesn't lead to immediate targeting, but are definitely impressionable at this point. We recommend cautious but free-willed consumption.");
+            textArea.setFont(new java.awt.Font("Arial", java.awt.Font.PLAIN, 20));
+			textArea.setForeground(java.awt.Color.BLUE);
+			textArea.setLineWrap(true);
+        textArea.setWrapStyleWord(true);
+        textArea.setEditable(false);JScrollPane scrollPane = new JScrollPane(textArea);
+            panel.add(scrollPane);
+        } else if (age < 20 && (searchAttitude.equals("Scrolling") || searchAttitude.equals("Manual search")) && (generalMood.equals("Raging") || generalMood.equals("Sad"))) {
+            JTextArea textArea = new JTextArea("Contrasting input details against behavior exhibited by social media algorithms and social groups, we've found that you might be out yearning for a social stand, which is good but self-evaluation at every step and manual search is recommended.Also, viewing content that evokes remorse(sadness) isn't aggressively promoted.");
+        textArea.setFont(new java.awt.Font("Arial", java.awt.Font.PLAIN, 20));
+		textArea.setForeground(java.awt.Color.BLUE);
+        textArea.setLineWrap(true);
+        textArea.setWrapStyleWord(true);
+        textArea.setEditable(false);
+		JScrollPane scrollPane = new JScrollPane(textArea);
+            panel.add(scrollPane);
+        }
+    }
+    frame.getContentPane().add(panel);
+    frame.setVisible(true);
+	JButton back = new JButton("Go to main page");
+		
+        back.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                yourChoice();
+				frame.dispose();
+            }
+        });
+		panel.add(back);
+	
+}	
+    public static void main(String[] args) {
+        Project Project = new Project();
+    }
+}
